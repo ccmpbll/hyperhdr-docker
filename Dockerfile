@@ -24,7 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get autoremove -y && \
     rm -rf /tmp/* /var/lib/apt/lists/*
 
-EXPOSE 8090 19444 19445
+EXPOSE 8090 8092 19400 19444 19445 19333 5568/udp
 VOLUME /config
 
 CMD ["/usr/bin/hyperhdr", "--userdata", "/config"]
