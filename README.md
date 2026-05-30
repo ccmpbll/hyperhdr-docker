@@ -32,8 +32,9 @@ image: ccmpbll/hyperhdr:22.0.0beta2
 | Tag | Description |
 |-----|-------------|
 | `latest` | Latest stable release |
-| `21.0.0.0` | Specific version (stable) |
-| `22.0.0beta2` | Specific version (beta) |
+| `beta` | Latest beta release |
+| `21.0.0.0` | Specific stable version |
+| `22.0.0beta2` | Specific beta version |
 
 All available tags can be found on [Docker Hub](https://hub.docker.com/r/ccmpbll/hyperhdr/tags).
 
