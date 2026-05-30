@@ -1,5 +1,7 @@
 # hyperhdr-docker
 
+![Image Build Status](https://img.shields.io/github/actions/workflow/status/ccmpbll/hyperhdr-docker/sync.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/ccmpbll/hyperhdr/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/ccmpbll/hyperhdr.svg)
+
 Docker image for [HyperHDR](https://github.com/awawa-dev/HyperHDR), automatically built and published to Docker Hub whenever new releases are made upstream.
 
 ## Usage
