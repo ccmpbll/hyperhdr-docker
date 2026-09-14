@@ -18,7 +18,7 @@ jobs:
         id: upstream
         run: |
           gh api "repos/awawa-dev/HyperHDR/releases?per_page=5" \
-            --jq '.[].tag_name' | sed 's/^v//' > upstream_tags.txt
+            --jq '.[].tag_name' | grep -v '^latest-build$' | sed 's/^v//' > upstream_tags.txt
           echo "Upstream tags:"
           cat upstream_tags.txt
         env:
