@@ -24,17 +24,19 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get existing Docker Hub tags
-        run: |
-          curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKERHUB_USERNAME }}/hyperhdr/tags?page_size=100" \
-            | jq -r 'if .results then .results[].name else empty end' > existing_tags.txt || true
-          echo "Existing tags:"
-          cat existing_tags.txt
-
       - name: Determine missing tags and floating tag targets
         id: diff
         run: |
-          comm -23 <(sort upstream_tags.txt) <(sort existing_tags.txt) > missing_tags.txt
+          : > missing_tags.txt
+          for t in $(cat upstream_tags.txt); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+              "https://hub.docker.com/v2/repositories/${{ secrets.DOCKERHUB_USERNAME }}/hyperhdr/tags/${t}")
+            case "$code" in
+              200) ;;
+              404) echo "$t" >> missing_tags.txt ;;
+              *) echo "Docker Hub lookup for ${t} returned ${code}"; exit 1 ;;
+            esac
+          done
           echo "Tags to build:"
           cat missing_tags.txt
 
